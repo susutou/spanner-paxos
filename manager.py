@@ -21,6 +21,7 @@ class Retriever(threading.Thread):
             cmd = conn.recv(2048)
             if cmd is not None:
                 self.queue.put(cmd)
+                print cmd
 
 
 if __name__ == '__main__':
