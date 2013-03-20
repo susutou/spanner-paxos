@@ -33,6 +33,8 @@ if __name__ == '__main__':
 
     group = sys.argv[1]
 
+    log = open('manager.txt', 'w')
+
     d = {
         'NVX': 'ec2-23-21-13-52.compute-1.amazonaws.com',
         'NVY': 'ec2-50-16-32-171.compute-1.amazonaws.com',
@@ -48,14 +50,12 @@ if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     paxos_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     paxos_client.bind((socket.gethostname(), 6667))
-    tpcSender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #tpcSender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #tpcSender.connect(('ec2-54-244-154-181.us-west-2.compute.amazonaws.com', 7766))
 
     opList = []
 
     while True:
-
-        if rt.queue.qsize() > 0:
-            print 'Queue size: ', rt.queue.qsize()
 
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
             if len(t) == 5:
                 sender, status, op, txnID, opID = t
             else:
-                continue
+                pass
 
             table, column, key, value = None, None, None, None
 
@@ -96,6 +96,8 @@ if __name__ == '__main__':
                 m = pickle.loads(ack)
                 if m.command == Message.MSG_CLIENT_ACK:
                     print 'Op #%s get accepted!' % opID
-                    tpcSender.connect(('ec2-54-244-154-181.us-west-2.compute.amazonaws.com', 7766))
-                    tpcSender.sendall('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
+                    log.write('[%s] %s @ %s\n' % (time.time(), op, txnID))
+                    #tpcSender.sendall('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
                     break
+
+    log.close()
