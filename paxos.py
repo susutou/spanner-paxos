@@ -57,7 +57,7 @@ class CommitLogger(object):
 
     def __init__(self, name):
         self.name = name
-        self.logFile = file('%s.txt' % name, 'w')
+        self.logFile = open('%s.txt' % name, 'w')
 
     def log(self, msg):
         self.logFile.write(
@@ -485,6 +485,9 @@ class PaxosLeader(object):
                 print '[Leader] History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
                 c = Commit(self.history.get(message.value['txnID']))
                 c.doCommit()
+            elif message.value['op'] == 'abort':
+                self.commitLogger.log(message.value)
+                self.history[message.value['txnID']] = []
             else:
                 if message.value['status'] == 'paxos_commit':
                     self.commitLogger.log(message.value)
