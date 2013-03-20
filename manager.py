@@ -49,7 +49,6 @@ if __name__ == '__main__':
     paxos_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     paxos_client.bind((socket.gethostname(), 6667))
     tpcSender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    tpcSender.connect(('ec2-54-244-154-181.us-west-2.compute.amazonaws.com', 7766))
 
     opList = []
 
@@ -97,5 +96,6 @@ if __name__ == '__main__':
                 m = pickle.loads(ack)
                 if m.command == Message.MSG_CLIENT_ACK:
                     print 'Op #%s get accepted!' % opID
-                    tpcSender.send('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
+                    tpcSender.connect(('ec2-54-244-154-181.us-west-2.compute.amazonaws.com', 7766))
+                    tpcSender.sendall('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
                     break
