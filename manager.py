@@ -4,7 +4,7 @@ import threading
 import pickle
 import time
 import sys
-from paxos import Message
+from paxos import Message, Logger
 
 
 class Retriever(threading.Thread):
