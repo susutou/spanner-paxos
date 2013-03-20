@@ -21,6 +21,8 @@ class Retriever(threading.Thread):
             print 'Get connected from %s' % address[0]
             while True:
                 cmd = conn.recv(2048)
+                if not cmd:
+                    break
                 if len(cmd.split('#')) == 5:
                     self.queue.put(cmd)
                     break
