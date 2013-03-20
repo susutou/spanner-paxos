@@ -16,8 +16,8 @@ class Retriever(threading.Thread):
 
     def run(self):
         self.socket.listen(1)
-        conn, address = self.socket.accept()
         while True:
+            conn, address = self.socket.accept()
             cmd = conn.recv(2048)
             if cmd is not None and len(cmd.split('#')) == 5:
                 self.queue.put(cmd)
