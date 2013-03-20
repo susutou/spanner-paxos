@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d366f3-06b7-41d3-b1b3-738bbf7f37af" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager.py" afterPath="$PROJECT_DIR$/manager.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paxos.py" afterPath="$PROJECT_DIR$/paxos.py" />
     </list>
     <ignored path="spanner-paxos.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/demo.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363799252670" ignored="false" />
-    <file path="/paxos.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363807369286" ignored="false" />
+    <file path="/paxos.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363808140739" ignored="false" />
     <file path="/client.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363768821660" ignored="false" />
     <file path="/manager.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363806425261" ignored="false" />
     <file path="/twopcclient.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363803793963" ignored="false" />
@@ -32,7 +31,7 @@
       <file leaf-file-name="paxos.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/paxos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="731" column="22" selection-start="27619" selection-end="27619" vertical-scroll-proportion="0.25842696">
+            <state line="494" column="82" selection-start="18048" selection-end="18048" vertical-scroll-proportion="0.66292137">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -507,7 +506,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/paxos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="731" column="22" selection-start="27619" selection-end="27619" vertical-scroll-proportion="0.25842696">
+        <state line="494" column="82" selection-start="18048" selection-end="18048" vertical-scroll-proportion="0.66292137">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>

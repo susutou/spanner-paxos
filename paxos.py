@@ -475,6 +475,7 @@ class PaxosLeader(object):
             ackMsg = Message(Message.MSG_CLIENT_ACK)
             ackMsg.value = 'accepted'
 
+
             if message.value['op'] == 'begin' and message.value['status'] == 'paxos_prepare':
                 self.history[message.value['txnID']] = [message.value]
                 self.commitLogger.log(message.value)
@@ -488,7 +489,10 @@ class PaxosLeader(object):
                 if message.value['status'] == 'paxos_commit':
                     self.commitLogger.log(message.value)
 
-                self.history[message.value['txnID']].append(message.value)
+                try:
+                    self.history[message.value['txnID']].append(message.value)
+                except:
+                    print '[Error] Transaction %s aborted.' % message.value['txnID']
 
             if self.group == 'x':
                 ackMsg.to = 'ec2-23-21-13-52.compute-1.amazonaws.com'
