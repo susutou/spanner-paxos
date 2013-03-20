@@ -3,14 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="21d366f3-06b7-41d3-b1b3-738bbf7f37af" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paxos.py" afterPath="$PROJECT_DIR$/paxos.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twopcclient.py" afterPath="$PROJECT_DIR$/twopcclient.py" />
     </list>
     <ignored path="spanner-paxos.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/demo.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363799252670" ignored="false" />
-    <file path="/paxos.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363802955886" ignored="false" />
+    <file path="/paxos.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363804148474" ignored="false" />
     <file path="/client.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363768821660" ignored="false" />
     <file path="/manager.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363802116854" ignored="false" />
-    <file path="/twopcclient.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363795847898" ignored="false" />
+    <file path="/twopcclient.py" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363803793963" ignored="false" />
     <file path="/Dummy.txt" changelist="21d366f3-06b7-41d3-b1b3-738bbf7f37af" time="1363789550658" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +32,7 @@
       <file leaf-file-name="paxos.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/paxos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="448" column="70" selection-start="16259" selection-end="16259" vertical-scroll-proportion="0.5540541">
+            <state line="14" column="16" selection-start="308" selection-end="308" vertical-scroll-proportion="-14.629213">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -53,7 +54,7 @@
       <file leaf-file-name="twopcclient.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twopcclient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="46" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+            <state line="20" column="9" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -98,18 +99,17 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/client.py" />
-        <option value="$PROJECT_DIR$/twopcclient.py" />
         <option value="$PROJECT_DIR$/demo.py" />
         <option value="$PROJECT_DIR$/manager.py" />
+        <option value="$PROJECT_DIR$/twopcclient.py" />
         <option value="$PROJECT_DIR$/paxos.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="824" />
+    <option name="height" value="825" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -369,7 +369,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="22" width="1440" height="824" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="825" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -377,11 +377,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16284074" sideWeight="0.66855526" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16284074" sideWeight="0.66902405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956153" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33144477" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33097595" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -489,7 +489,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/twopcclient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="46" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+        <state line="20" column="9" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -507,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/paxos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="70" selection-start="16259" selection-end="16259" vertical-scroll-proportion="0.5540541">
+        <state line="14" column="16" selection-start="308" selection-end="308" vertical-scroll-proportion="-14.629213">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>

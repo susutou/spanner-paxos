@@ -2,6 +2,17 @@ import threading
 import socket
 import pickle
 import Queue
+import xmlrpclib
+
+
+class Commit(object):
+    def __init__(self, history):
+        self.history = history
+        self.server = xmlrpclib.ServerProxy('http://localhost:7777')
+
+    def doCommit(self):
+        for event in self.history:
+            pass
 
 
 class Logger(object):

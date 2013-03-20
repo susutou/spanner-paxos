@@ -14,6 +14,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 
+
+
 s.connect(('ec2-23-21-13-52.compute-1.amazonaws.com', 6666))
-s.send('ORX#paxos_prepare#begin#0#0')
+s.send('ORX#paxos_prepare#commit#0#0')
 s.close()
