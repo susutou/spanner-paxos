@@ -20,7 +20,7 @@ class Retriever(threading.Thread):
             conn, address = self.socket.accept()
             print 'Get connected from %s' % address[0]
             cmd = conn.recv(2048)
-            if len(cmd.split('#')) == 5:
+            if cmd is not None:
                 self.queue.put(cmd)
             conn.close()
 
