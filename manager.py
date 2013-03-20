@@ -22,7 +22,7 @@ class Retriever(threading.Thread):
 
             while True:
                 cmd = conn.recv(1024)
-                if len(cmd.split('#') > 1):
+                if len(cmd.split('#')) > 1:
                     self.queue.put(cmd)
                     break
 
