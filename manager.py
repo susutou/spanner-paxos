@@ -21,7 +21,7 @@ class Retriever(threading.Thread):
             cmd = conn.recv(2048)
             if cmd is not None and len(cmd.split('#')) == 5:
                 self.queue.put(cmd)
-                print cmd
+                #print cmd
 
 
 if __name__ == '__main__':
@@ -82,9 +82,9 @@ if __name__ == '__main__':
                     m = pickle.loads(ack)
                     if m.command == Message.MSG_CLIENT_ACK:
                         print 'Op #%s get accepted!' % opID
-                        #tpcSender.connect((d[sender], 7766))
-                        #tpcSender.send('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
-                        #tpcSender.close()
+                        tpcSender.connect((d[sender], 7766))
+                        tpcSender.send('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
+                        tpcSender.close()
                         break
                 except:
                     pass
