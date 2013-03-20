@@ -18,12 +18,12 @@ class Retriever(threading.Thread):
         self.socket.listen(1)
         while True:
             conn, address = self.socket.accept()
-            cmd = conn.recv(2048)
-            if cmd is not None and len(cmd.split('#')) == 5:
-                self.queue.put(cmd)
+            while True:
+                cmd = conn.recv(2048)
+                if len(cmd.split('#')) == 5:
+                    self.queue.put(cmd)
+                    break
                 #print cmd
-            conn.close()
-            self.socket.close()
 
 
 if __name__ == '__main__':
