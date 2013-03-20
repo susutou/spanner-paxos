@@ -53,6 +53,23 @@ class Logger(object):
         )
 
 
+class CommitLogger(object):
+
+    def __init__(self, name):
+        self.name = name
+        self.logFile = file('%s.txt' % name, 'w')
+
+    def log(self, msg):
+        self.logFile.write(
+            '[%s] Transaction ID: %s; Operation ID: %s; Operation: %s.\n' % (
+                time.time(),
+                msg['txnID'],
+                msg['opID'],
+                msg['op']
+            )
+        )
+
+
 class Operation(object):
     READ = 1
     WRITE = 2
@@ -255,6 +272,7 @@ class PaxosLeader(object):
         # The last time we tried to fix up any gaps
         self.lasttime = time.time()
         self.logger = Logger('leader')
+        self.commitLogger = CommitLogger('commit')
         self.group = ''
         self.history = {}
 
@@ -459,12 +477,17 @@ class PaxosLeader(object):
 
             if message.value['op'] == 'begin' and message.value['status'] == 'paxos_prepare':
                 self.history[message.value['txnID']] = [message.value]
+                self.commitLogger.log(message.value)
             elif message.value['op'] == 'commit' and message.value['status'] == 'paxos_commit':
+                self.commitLogger.log(message.value)
                 self.history[message.value['txnID']].append(message.value)
                 print '[Leader] History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
                 c = Commit(self.history.get(message.value['txnID']))
                 c.doCommit()
             else:
+                if message.value['status'] == 'paxos_commit':
+                    self.commitLogger.log(message.value)
+
                 self.history[message.value['txnID']].append(message.value)
 
             if self.group == 'x':

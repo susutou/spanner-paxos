@@ -18,7 +18,7 @@ class Retriever(threading.Thread):
         self.socket.listen(5)
         while True:
             conn, address = self.socket.accept()
-            print 'Get connected from %s' % address[0]
+            #print 'Get connected from %s' % address[0]
 
             while True:
                 cmd = conn.recv(1024)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
 
-            print cmd
+            print '[Manager]', cmd
 
             t = cmd.split('#')
             if len(t) == 5:
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
             sender = sender[2:]
 
-            print sender, status, op, '#', txnID
+            #print sender, status, op, '#', txnID
 
             m = Message(Message.MSG_EXT_PROPOSE)
             if group == 'x':
@@ -95,7 +95,7 @@ if __name__ == '__main__':
                 ack, __ = paxos_client.recvfrom(2048)
                 m = pickle.loads(ack)
                 if m.command == Message.MSG_CLIENT_ACK:
-                    print 'Op #%s get accepted!' % opID
+                    print '[Manager] Op #%s get accepted!' % opID
                     log.write('[%s] %s @ %s\n' % (time.time(), op, txnID))
                     #tpcSender.sendall('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
                     break
