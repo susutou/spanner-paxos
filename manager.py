@@ -19,9 +19,13 @@ class Retriever(threading.Thread):
         while True:
             conn, address = self.socket.accept()
             print 'Get connected from %s' % address[0]
-            cmd = conn.recv(2048)
-            if cmd is not None:
-                self.queue.put(cmd)
+
+            while True:
+                cmd = conn.recv(1024)
+                if len(cmd.split('#') > 1):
+                    self.queue.put(cmd)
+                    break
+
             conn.close()
 
 
@@ -49,8 +53,6 @@ if __name__ == '__main__':
     opList = []
 
     while True:
-
-        print rt.queue()
 
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
