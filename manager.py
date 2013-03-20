@@ -15,7 +15,7 @@ class Retriever(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        self.socket.listen(2)
+        self.socket.listen()
         while True:
             conn, address = self.socket.accept()
             print 'Get connected from %s' % address[0]
