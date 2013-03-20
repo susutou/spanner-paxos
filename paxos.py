@@ -206,7 +206,7 @@ class InstanceRecord(object):
         for k in keys:
             protocol = self.protocols[k]
             if protocol.state == PaxosLeaderProtocol.STATE_ACCEPTED:
-                print "Deleting protocol"
+                print "[Keeper] Deleting protocol"
                 del self.protocols[k]
 
 
@@ -340,9 +340,9 @@ class PaxosLeader(object):
         if self.isPrimary != primary:
             # Only print if something's changed
             if primary:
-                print "I (%s) am the leader" % self.port
+                print "[Leader] I (%s) am the leader" % self.host
             else:
-                print "I (%s) am NOT the leader" % self.port
+                print "[Leader] I (%s) am NOT the leader" % self.host
         self.isPrimary = primary
 
     #------------------------------------------------------        
@@ -376,7 +376,7 @@ class PaxosLeader(object):
         # if no message is received, we take the chance to do a little cleanup
         for i in xrange(1, self.highestInstance):
             if self.getInstanceValue(i) == None:
-                print "Filling in gap", i
+                print "[Leader] Filling in gap", i
                 self.newProposal(0,
                                  i) # This will either eventually commit an already accepted value, or fill in the gap with 0 or no-op
         self.lasttime = time.time()
@@ -398,7 +398,7 @@ class PaxosLeader(object):
             self.hbListener.newHB(message)
             return True
         if message.command == Message.MSG_EXT_PROPOSE:
-            print "External proposal received at", self.port, self.highestInstance
+            print "[Proposer] External proposal received at", self.port, self.highestInstance
             if self.isPrimary:
                 self.newProposal(message.value)
                 # else ignore - we're getting  proposals when we're not the primary
@@ -449,7 +449,7 @@ class PaxosLeader(object):
     def notifyLeader( self, protocol, message ):
         # Protocols call this when they're done
         if protocol.state == PaxosLeaderProtocol.STATE_ACCEPTED:
-            print "Protocol instance %s accepted with value %s" % (message.instanceID, message.value)
+            print "[Leader] Protocol instance %s accepted with value %s" % (message.instanceID, message.value)
             self.instances[message.instanceID].accepted = True
             self.instances[message.instanceID].value = message.value
             self.highestInstance = max(message.instanceID, self.highestInstance)
@@ -457,10 +457,11 @@ class PaxosLeader(object):
             ackMsg = Message(Message.MSG_CLIENT_ACK)
             ackMsg.value = 'accepted'
 
-            if message.value['op'] == 'begin':
-                self.history[message.value['txnID']] = []
-            elif message.value['op'] == 'commit':
-                print 'History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
+            if message.value['op'] == 'begin' and message.value['status'] == 'paxos_prepare':
+                self.history[message.value['txnID']] = [message.value]
+            elif message.value['op'] == 'commit' and message.value['status'] == 'paxos_commit':
+                self.history[message.value['txnID']].append(message.value)
+                print '[Leader] History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
                 c = Commit(self.history.get(message.value['txnID']))
                 c.doCommit()
             else:
@@ -636,7 +637,7 @@ class PaxosAcceptorProtocol(object):
 
     def recvProposal( self, message ):
         if message.command == Message.MSG_PROPOSE:
-            print message
+            #print message
             self.proposalID = message.proposalID
             self.instanceID = message.instanceID
             # What's the highest already agreed proposal for this instance?
