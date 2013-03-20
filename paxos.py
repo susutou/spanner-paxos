@@ -12,7 +12,10 @@ class Commit(object):
 
     def doCommit(self):
         for event in self.history:
-            pass
+            if event['status'] == 'paxos_commit':
+                if event['op'][:5] == 'write':
+                    __, table, column, key, value = event['op'].split(',')
+                    self.server.algdemo.addRecord('CS271', key, 'credit', '', value)
 
 
 class Logger(object):
@@ -458,6 +461,8 @@ class PaxosLeader(object):
                 self.history[message.value['txnID']] = []
             elif message.value['op'] == 'commit':
                 print 'History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
+                c = Commit(self.history.get(message.value['txnID']))
+                c.doCommit()
             else:
                 self.history[message.value['txnID']].append(message.value)
 
