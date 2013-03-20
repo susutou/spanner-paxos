@@ -15,7 +15,7 @@ class Retriever(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        self.socket.listen(1)
+        self.socket.listen(5)
         while True:
             conn, address = self.socket.accept()
             cmd = conn.recv(2048)
