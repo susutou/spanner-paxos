@@ -49,7 +49,7 @@ if __name__ == '__main__':
     paxos_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     paxos_client.bind((socket.gethostname(), 6667))
     tpcSender = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    tpcSender.connect(('ec2-23-21-13-52.compute-1.amazonaws.com', 7766))
+    tpcSender.connect(('ec2-54-244-154-181.us-west-2.compute.amazonaws.com', 7766))
 
     opList = []
 
