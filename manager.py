@@ -18,6 +18,7 @@ class Retriever(threading.Thread):
         self.socket.listen(5)
         while True:
             conn, address = self.socket.accept()
+            print 'Get connected from %s' % address
             while True:
                 cmd = conn.recv(2048)
                 if len(cmd.split('#')) == 5:
