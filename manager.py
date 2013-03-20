@@ -50,6 +50,8 @@ if __name__ == '__main__':
 
     while True:
 
+        print rt.queue()
+
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
             t = cmd.split('#')
