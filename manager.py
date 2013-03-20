@@ -69,6 +69,8 @@ if __name__ == '__main__':
             elif op[:4] == 'read':
                 __, table, column, key = op.split(',')
 
+            sender = sender[2:]
+
             print sender, status, op, '#', txnID
 
             m = Message(Message.MSG_EXT_PROPOSE)
