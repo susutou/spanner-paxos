@@ -23,6 +23,7 @@ class Retriever(threading.Thread):
                 self.queue.put(cmd)
                 #print cmd
             conn.close()
+            self.socket.close()
 
 
 if __name__ == '__main__':
