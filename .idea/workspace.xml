@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21d366f3-06b7-41d3-b1b3-738bbf7f37af" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo.py" afterPath="$PROJECT_DIR$/demo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paxos.py" afterPath="$PROJECT_DIR$/paxos.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twopcclient.py" afterPath="$PROJECT_DIR$/twopcclient.py" />
     </list>
     <ignored path="spanner-paxos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +31,7 @@
       <file leaf-file-name="paxos.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/paxos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="450" column="71" selection-start="16380" selection-end="16380" vertical-scroll-proportion="0.6891892">
+            <state line="450" column="73" selection-start="16388" selection-end="16388" vertical-scroll-proportion="0.5878378">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -509,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/paxos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="450" column="71" selection-start="16380" selection-end="16380" vertical-scroll-proportion="0.6891892">
+        <state line="450" column="73" selection-start="16388" selection-end="16388" vertical-scroll-proportion="0.5878378">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>

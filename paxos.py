@@ -444,11 +444,11 @@ class PaxosLeader(object):
             ackMsg.value = 'accepted'
 
             if message.value.op == 'begin':
-                self.history[message.value.txnID] = []
+                self.history[message.value['txnID']] = []
             elif message.value.op == 'commit':
-                print 'History of Txn %s: \n' % message.value.txnID, self.history.get(message.value.txnID, [])
+                print 'History of Txn %s: \n' % message.value.txnID, self.history.get(message.value['txnID'], [])
             else:
-                self.history[message.value.txnID].append(message.value)
+                self.history[message.value['txnID']].append(message.value)
 
             if self.group == 'x':
                 ackMsg.to = 'ec2-23-21-13-52.compute-1.amazonaws.com'
