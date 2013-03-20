@@ -56,6 +56,9 @@ if __name__ == '__main__':
 
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
+
+            print cmd
+
             t = cmd.split('#')
             if len(t) == 5:
                 sender, status, op, txnID, opID = t
