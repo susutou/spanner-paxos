@@ -443,10 +443,10 @@ class PaxosLeader(object):
             ackMsg = Message(Message.MSG_CLIENT_ACK)
             ackMsg.value = 'accepted'
 
-            if message.value.op == 'begin':
+            if message.value['op'] == 'begin':
                 self.history[message.value['txnID']] = []
-            elif message.value.op == 'commit':
-                print 'History of Txn %s: \n' % message.value.txnID, self.history.get(message.value['txnID'], [])
+            elif message.value['op'] == 'commit':
+                print 'History of Txn %s: \n' % message.value['txnID'], self.history.get(message.value['txnID'], [])
             else:
                 self.history[message.value['txnID']].append(message.value)
 

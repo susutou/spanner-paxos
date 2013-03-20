@@ -31,7 +31,7 @@
       <file leaf-file-name="paxos.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/paxos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="450" column="73" selection-start="16388" selection-end="16388" vertical-scroll-proportion="0.5878378">
+            <state line="448" column="70" selection-start="16259" selection-end="16259" vertical-scroll-proportion="0.5540541">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -507,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/paxos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="450" column="73" selection-start="16388" selection-end="16388" vertical-scroll-proportion="0.5878378">
+        <state line="448" column="70" selection-start="16259" selection-end="16259" vertical-scroll-proportion="0.5540541">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
