@@ -1,26 +1,3 @@
-# Naive implementation of the Paxos protocol.
-# Henry Robinson, 2009
-# Licensed under GPL v2
-
-# TODO:
-# 1. Protocols log their state to persistent storage, and recover, rather than the fakery that's there at the moment.
-# 2. No way for clients to know who the primary is
-# 3. A leader that has failed and then wakes up will have no idea what the highest committed instance is. This can be helped, but the code is
-# complex enough and it isn't so much an error condition as a pain.
-# 4. Exercise for the reader: notify the client about the result of its request.
-# 5. Garbage collect unneeded proposals, and re-propose those that seem to have stalled. Easy to do this from recvMessage.
-
-# The idea of this Paxos implementation is to come to agreement on a
-# history of values (which may represent commands in a state machine)
-# We have two main players: PaxosLeader and PaxosAcceptor. PaxosLeader listens for proposals from external clients
-# and runs the protocol with whichever PaxosAcceptors are currently correct.
-# If a leader fails, another leader will take over once it realises. If clients fail, the protocol will still run until
-# more than half have failed.
-# This is designed to run all on one machine: each actor has a port number, but all are bound to localhost. Would be reasonably
-# trivial to generalise this.
-
-# See bottom of file for demonstration of use.
-
 import threading
 import socket
 import pickle
@@ -265,6 +242,7 @@ class PaxosLeader(object):
         self.lasttime = time.time()
         self.logger = Logger('leader')
         self.group = ''
+        self.history = {}
 
     #------------------------------------------------------
     # These two classes listen for heartbeats from other leaders
@@ -464,6 +442,13 @@ class PaxosLeader(object):
 
             ackMsg = Message(Message.MSG_CLIENT_ACK)
             ackMsg.value = 'accepted'
+
+            if message.value.op == 'begin':
+                self.history[message.value.txnID] = []
+            elif message.value.op == 'commit':
+                print 'History of Txn %s: \n' % message.value.txnID, self.history.get(message.value.txnID, [])
+            else:
+                self.history[message.value.txnID].append(message.value)
 
             if self.group == 'x':
                 ackMsg.to = 'ec2-23-21-13-52.compute-1.amazonaws.com'
