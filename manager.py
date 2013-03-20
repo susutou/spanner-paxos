@@ -91,12 +91,9 @@ if __name__ == '__main__':
 
             while True:
                 ack, __ = paxos_client.recvfrom(2048)
-                try:
-                    m = pickle.loads(ack)
-                    if m.command == Message.MSG_CLIENT_ACK:
-                        print 'Op #%s get accepted!' % opID
-                        tpcSender.connect((d[sender], 7766))
-                        tpcSender.send('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
-                        break
-                except:
-                    pass
+                m = pickle.loads(ack)
+                if m.command == Message.MSG_CLIENT_ACK:
+                    print 'Op #%s get accepted!' % opID
+                    tpcSender.connect((d[sender], 7766))
+                    tpcSender.send('%s#%s' % ('paxos_ready', '#'.join(t[2:])))
+                    break
