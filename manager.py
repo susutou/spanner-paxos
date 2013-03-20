@@ -19,7 +19,7 @@ class Retriever(threading.Thread):
         conn, address = self.socket.accept()
         while True:
             cmd = conn.recv(2048)
-            if cmd is not None:
+            if cmd is not None and len(cmd.split('#')) == 5:
                 self.queue.put(cmd)
                 print cmd
 
