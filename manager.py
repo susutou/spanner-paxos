@@ -54,6 +54,8 @@ if __name__ == '__main__':
 
     while True:
 
+        print 'Queue size: ', rt.queue.qsize()
+
         if not rt.queue.empty():
             cmd = rt.queue.get(True, 3)
 
