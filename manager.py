@@ -62,12 +62,12 @@ if __name__ == '__main__':
             else:
                 continue
 
-            key, value = None, None
+            table, column, key, value = None, None, None, None
 
             if op[:5] == 'write':
-                __, key, value = op.split(',')
+                __, table, column, key, value = op.split(',')
             elif op[:4] == 'read':
-                __, key = op.split(',')
+                __, table, column, key = op.split(',')
 
             print sender, status, op, '#', txnID
 
