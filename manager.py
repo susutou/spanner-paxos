@@ -22,6 +22,7 @@ class Retriever(threading.Thread):
             if cmd is not None and len(cmd.split('#')) == 5:
                 self.queue.put(cmd)
                 #print cmd
+            conn.close()
 
 
 if __name__ == '__main__':
