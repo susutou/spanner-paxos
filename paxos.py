@@ -60,14 +60,7 @@ class CommitLogger(object):
         self.logFile = open('%s.txt' % name, 'w')
 
     def log(self, msg):
-        self.logFile.write(
-            '[%s] Transaction ID: %s; Operation ID: %s; Operation: %s.\n' % (
-                time.time(),
-                msg['txnID'],
-                msg['opID'],
-                msg['op']
-            )
-        )
+        print '[%s] Transaction ID: %s; Operation ID: %s; Operation: %s.\n' % (time.time(), msg['txnID'], msg['opID'], msg['op'])
 
 
 class Operation(object):
@@ -111,16 +104,6 @@ class MessagePump(threading.Thread):
             self.owner = owner
             threading.Thread.__init__(self)
 
-        # def run( self ):
-        #     while not self.owner.abort:
-        #         try:
-        #             (bytes, addr) = self.owner.socket.recvfrom(2048)
-        #             msg = pickle.loads(bytes)
-        #             msg.source = addr[1]
-        #             self.owner.queue.put(msg)
-        #         except:
-        #             pass
-
         def run( self ):
             while not self.owner.abort:
                 try:
@@ -157,14 +140,8 @@ class MessagePump(threading.Thread):
         try:
             msg = self.queue.get(True, 3)
             return msg
-        except: # ugh, specialise the exception!
+        except:
             return None
-
-    # def sendMessage( self, message ):
-    #     bytes = pickle.dumps(message)
-    #     address = ("localhost", message.to)
-    #     self.socket.sendto(bytes, address)
-    #     return True
 
     def sendMessage( self, message, port ):
         bytes = pickle.dumps(message)
@@ -174,30 +151,6 @@ class MessagePump(threading.Thread):
 
     def doAbort( self ):
         self.abort = True
-
-
-import random
-
-
-class AdversarialMessagePump(MessagePump):
-    """The adversarial message pump randomly delays messages and delivers them in arbitrary orders"""
-
-    def __init__( self, owner, port, timeout=2 ):
-        MessagePump.__init__(self, owner, port, timeout)
-        self.messages = set()
-
-    def waitForMessage( self ):
-        try:
-            msg = self.queue.get(True, 0.1)
-            self.messages.add(msg)
-        except: # ugh, specialise the exception!
-            pass
-        if len(self.messages) > 0 and random.random() < 0.95: # Arbitrary!
-            msg = random.choice(list(self.messages))
-            self.messages.remove(msg)
-        else:
-            msg = None
-        return msg
 
 
 class InstanceRecord(object):
@@ -228,27 +181,6 @@ class InstanceRecord(object):
 
 
 class PaxosLeader(object):
-    # def __init__(self, port, leaders=None, acceptors=None):
-    #     self.port = port
-    #     if leaders == None:
-    #         self.leaders = []
-    #     else:
-    #         self.leaders = leaders
-    #     if acceptors == None:
-    #         self.acceptors = []
-    #     else:
-    #         self.acceptors = acceptors
-    #     self.group = self.leaders + self.acceptors
-    #     self.isPrimary = False
-    #     self.proposalCount = 0
-    #     self.msgPump = MessagePump(self, port)
-    #     self.instances = {}
-    #     self.hbListener = PaxosLeader.HeartbeatListener(self)
-    #     self.hbSender = PaxosLeader.HeartbeatSender(self)
-    #     self.highestInstance = -1
-    #     self.stopped = True
-    #     # The last time we tried to fix up any gaps
-    #     self.lasttime = time.time()
 
     def __init__(self, address, leaders=None, acceptors=None):
         self.host, self.port = address
